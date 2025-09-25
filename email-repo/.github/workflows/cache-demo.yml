@@ -1,0 +1,32 @@
+name: CI with Cache Demo
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: prime-cache-1321178
+        id: prime-cache-1321178
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            node_modules
+          key: cache-1321178
+
+      - name: Echo cache result
+        run: |
+          if [ "${{ steps.prime-cache-1321178.outputs.cache-hit }}" == "true" ]; then
+            echo "Cache hit!"
+          else
+            echo "Cache miss!"
+          fi
