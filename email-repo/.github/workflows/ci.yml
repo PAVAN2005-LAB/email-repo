@@ -1,0 +1,14 @@
+name: Test CI Workflow
+
+on:
+  workflow_dispatch: # allows manual triggering
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 24f1001768@ds.study.iitm.ac.in
+        run: echo "Hello, world! from workflow"
